@@ -63,23 +63,23 @@ p a:hover {
     font-size: 1.8em;
     margin-right: 20px;
 }
-.post {
+.session {
     border: 10px solid #fa023c;
     padding: 20px;
     margin-bottom: 1em;
     display: block;
     width: 100%;
 }
-.post h2 {
+.session h2 {
     margin: 5px 0 10px;
     color: black;
     font-weight: 600;
     font-size: 2em;
 }
-.post p, .post h1 a:visited {
+.session p, .session h1 a:visited {
     color: #000000;
 }
-.post-lesson {
+.session-lesson {
     display: block;
 }
 .logo2{
@@ -99,12 +99,12 @@ p a:hover {
     min-height: 100%;
     margin-bottom: 93px;
 }
-.post-list, .post-detail {
+.session-list, .session-detail {
     width: 100%;
     background-color: white;
     overflow: auto;
 }
-.post p{
+.session p{
     font-weight: 600;
     text-transform: uppercase;
     margin: 0px 0 0;
@@ -148,10 +148,10 @@ p a:hover {
     background-color: #e00218;
     color: white;
 }
-.post-detail label {
+.session-detail label {
     display: none;
 }
-.post-detail textarea {
+.session-detail textarea {
     padding: 6px 10px 0;
     border: 10px solid #fa023c;
     width: 100%;
@@ -159,7 +159,7 @@ p a:hover {
     display: block;
     font-size: 1em;
 }
-.post-form {
+.session-form {
     margin-top: 1em;
 }
 .footer {
@@ -201,10 +201,10 @@ p a:hover {
     body{
         padding: 0;
     }
-    .post-detail {
+    .session-detail {
         padding: 2em;
     }
-    .post-detail .post {
+    .session-detail .session {
         margin: 0;
     }
     .logo2 {
@@ -214,12 +214,12 @@ p a:hover {
     .current_session {
         padding: 0 1.2em ;
     }
-    .post{
+    .session{
         margin: 1em;
         width: 250px;
         height: 210px;
     }
-    .post-list {
+    .session-list {
         padding: 1em;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -253,7 +253,7 @@ p a:hover {
     .header-text{
         position: absolute;
     }
-    .post-list .post:hover{
+    .session-list .session:hover{
         border: 10px solid #e00218;
     }
     .current_session {
@@ -263,10 +263,10 @@ p a:hover {
     .comments {
         width: 100%;
     }
-    .post-list {
+    .session-list {
          padding: 2em 4em 5em;
     }
-    .post-detail{
+    .session-detail{
         padding: 6em 5em;
     }
     .header-text>h1 {

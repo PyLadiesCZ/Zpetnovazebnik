@@ -14,16 +14,16 @@ def course_list(request):
 
 def session_list(request, course_name):
     course = get_object_or_404(Course, course_name=course_name)
-    sessions = Session.objects#.filter(course=course) #.filter(published_date__lte=timezone.now()).order_by('published_date').reverse()
+    sessions = Session.objects.filter(course=course) #.filter(published_date__lte=timezone.now()).order_by('published_date').reverse()
     past_sessions = sessions[1:]
-    current_session = sessions[:1]
+    current_sessions = sessions[:1]
 
-    return render(request, 'things/session_list.html', {'past_sessions': past_sessions, 'current_session': current_session, 'sessions': sessions, 'course': course})
+    return render(request, 'things/session_list.html', {'past_sessions': past_sessions, 'current_sessions': current_sessions, 'sessions': sessions, 'course': course})
 
 def session_detail(request, course_name, pk):
     course = get_object_or_404(Course, course_name=course_name)
     session = get_object_or_404(Session, pk=pk)
-    if session.published_date<=timezone.now():
+    if (not session.published_date) or session.published_date<=timezone.now():
         return render(request, 'things/session_detail.html', {'session': session, 'course': course})
     else:
         raise Http404

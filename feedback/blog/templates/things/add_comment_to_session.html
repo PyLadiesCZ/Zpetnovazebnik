@@ -1,7 +1,7 @@
 {% extends 'things/base.html' %}
 
 {% block content %}
-<div class="post-detail">
+<div class="session-detail">
 
     <div class="comments">
         <div class="comment-header">
@@ -20,7 +20,7 @@
         Jen do toho!
         Zpětná vazba je anonymní.</p>
     </div>
-    <form method="POST" class="post-form">
+    <form method="session" class="session-form">
         {% csrf_token %}
         {{ form }}
         <div class="btn-save">
