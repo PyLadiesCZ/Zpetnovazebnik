@@ -1,0 +1,44 @@
+{% extends 'things/base.html' %}
+
+{% block content %}
+{% if sessions.count >= 1 %}
+    <h2 class="current_session">Aktuální lekce:</h2>
+{% endif %}
+<div class="post-list">
+        <a href="{% url 'session_detail' course_name=course.course_name pk=session.pk %}">
+            <div class="post">
+                <h2>{{ current_session.title }}</h2>
+                <p>{{ current_session.text|linebreaksbr }}</p>
+                <div class="date">
+                    {{ current_session.published_date }}
+                </div>
+                    {% if current_session.comments.count == 0 %}
+                        <spnt>Přidej první hodnocení!</span>
+                    {% else %}
+                        <spnt>Hodnocení: {{ current_session.comments.count }}</span>
+                    {% endif %}
+            </div>
+        </a>
+</div>
+{% if sessions.count >= 1 %}
+    <h2 class="current_session">Proběhlé lekce:</h2>
+{% endif %}
+<div class="post-list">
+    {% for session in past_sessions %}
+        <a href="{% url 'session_detail' course_name=course.course_name pk=session.pk %}">
+            <div class="session">
+                <h2>{{ session.title }}</h2>
+                <p>{{ session.text|linebreaksbr }}</p>
+                <div class="date">
+                    {{ session.published_date }}
+                </div>
+                {% if session.comments.count == 0 %}
+                    <spnt>Přidej první hodnocení!</span>
+                {% else %}
+                    <spnt>Hodnocení: {{ session.comments.count }}</span>
+                {% endif %}
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock content %}

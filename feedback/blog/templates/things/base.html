@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="cs"  >
+    <head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"></meta>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+        <meta name="description" content="Zpětná vazba na začátečnické kurzy Pythonu. Více informací na pyladies.cz"></meta>
+
+        <title>
+            {% block title %}PyLadies - zpětná vazba{% endblock title %}
+        </title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+        <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}" />
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext" rel="stylesheet" rel='stylesheet' type='text/css'>
+    </head>
+
+    <body>
+        <div class="page-header">
+            <div class="logo">
+                <a href=/> <img class="logo2" src="{% static 'img/pyladies.png' %}" alt="pyladies-logo"></a>
+            </div>
+            <div class="header-text">
+                <h1><a href="/">Zpětná vazba</a></h1>
+                <h2>{{ nazev_kurzu }}</h2>
+            </div>
+        </div>
+        <div class="content">
+             {% block content %}
+             {% endblock %}
+        </div>
+            <div class="footer">
+
+                <div class="global-pyladies">
+                  PyLadies CZ jsou součástí <a href="http://pyladies.com">mezinárodních PyLadies</a>.
+                </div>
+                <ul>
+                    <li>
+                        <a href="mailto:brno@pyladies.cz">
+                            <img src="{% static 'img/icon/mail-white.png' %}" alt=" " />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/pyladiescz">
+                            <img src="{% static 'img/icon/twitter-white.png' %}" alt=" " />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://pyladies.cz">
+                            <img src="{% static 'img/icon/who.svg' %}" alt=" "/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/groups/pyladiesBrno/">
+                            <img src="{% static 'img/icon/facebook-white.png' %}" alt=" "/>
+                        </a>
+                    </li>
+                </ul>
+
+        <div class="clear"></div>
+            </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'things/base.html' %}
+
+{% block content %}
+<div class="post-detail">
+    <div class="post">
+        <h2>{{ session.title }}</h2>
+        <p>{{ session.text|linebreaksbr }}</p>
+        {% if session.published_date %}
+            <div class="date">
+                {{ session.published_date }}
+            </div>
+        {% endif %}
+        {% if session.comments.count == 0 %}
+            <spnt>Přidej první hodnocení!</span>
+        {% else %}
+            <spnt> Hodnocení: {{ session.comments.count }}</span>
+        {% endif %}
+    </div>
+
+<a class="btn" href="{% url 'add_comment_to_session' course_name=course.course_name pk=session.pk %}">Přidat zpětnou vazbu</a>
+    <div class="comments">
+        {% for comment in session.comments.all %}
+            <div class="comment">
+                <p>{{ comment.text|linebreaks }}</p>
+                <hr>
+            </div>
+        {% empty %}
+            <p>Lekci zatím nikdo nehodnotil :-(</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

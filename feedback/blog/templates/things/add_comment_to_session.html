@@ -1,0 +1,31 @@
+{% extends 'things/base.html' %}
+
+{% block content %}
+<div class="post-detail">
+
+    <div class="comments">
+        <div class="comment-header">
+        <h2>{{ session.title }}</h2>
+        {% if session.published_date %}
+            <div class="date">
+                {{ session.published_date }}
+            </div>
+        {% endif %}
+        </div>
+        <h2>Napiš nám, jak se ti dnešní sraz líbil.</h2>
+        <p>Ty se učíš Python, my se zase učíme, jak Python vyučovat.
+        Chceme připravovat lepší kurzy, a proto potřebujeme tvou zpětnou vazbu.
+        Stíhala jsi? Rozuměla jsi všemu? Pokud ne - čemu? Byla pro Tebe lekce moc těžká/lehká/akorát?
+        Když jsi potřebovala, pomohl Ti kouč? Můžeme něco vylepšit? Chceš nás zkritizovat?
+        Jen do toho!
+        Zpětná vazba je anonymní.</p>
+    </div>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form }}
+        <div class="btn-save">
+            <button type="submit" class="save">Odeslat</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

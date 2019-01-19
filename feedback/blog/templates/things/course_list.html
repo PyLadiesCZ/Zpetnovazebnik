@@ -1,0 +1,16 @@
+{% extends 'things/base.html' %}
+
+{% block content %}
+
+
+<div class="post-list">
+    nenen
+{% for course in courses %}
+    <a href="{% url 'session_list' course_name=course.course_name %}">
+        <div class="post">
+            <p>{{ course.course_name }}</p>
+        </div>
+    </a>
+{% endfor %}
+</div>
+{% endblock content %}
