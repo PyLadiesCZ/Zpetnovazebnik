@@ -3,8 +3,9 @@ from django.utils import timezone
 
 
 class Course(models.Model):
-    course_name = models.TextField()
+    course_name = models.CharField(max_length=100)
     published_date = models.DateTimeField(blank=True, null=True)
+    password = models.CharField(max_length=10)
     def publish(self):
         self.published_date = timezone.now()
         self.save()

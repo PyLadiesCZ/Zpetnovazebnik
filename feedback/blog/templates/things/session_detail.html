@@ -17,7 +17,7 @@
         {% endif %}
     </div>
 
-<a class="btn" href="{% url 'add_comment_to_session' course_name=course.course_name pk=session.pk %}">Přidat zpětnou vazbu</a>
+
     <div class="comments">
         {% for comment in session.comments.all %}
             <div class="comment">

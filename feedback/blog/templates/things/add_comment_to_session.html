@@ -20,7 +20,7 @@
         Jen do toho!
         Zpětná vazba je anonymní.</p>
     </div>
-    <form method="session" class="session-form">
+    <form method="POST" class="session-form">
         {% csrf_token %}
         {{ form }}
         <div class="btn-save">
