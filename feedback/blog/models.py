@@ -28,6 +28,7 @@ class Session(models.Model):
 
 class Comment(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='comments')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions_comments')
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)

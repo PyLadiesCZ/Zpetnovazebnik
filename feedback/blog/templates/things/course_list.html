@@ -3,10 +3,10 @@
 {% block content %}
 
 
-<div class="session-list">
+<div class="course-list">
 {% for course in courses %}
     <a href="{% url 'session_list' course_name=course.course_name %}">
-        <div class="session">
+        <div class="course pltext">
             <p>{{ course.course_name }}</p>
         </div>
     </a>

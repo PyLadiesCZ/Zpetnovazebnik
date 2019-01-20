@@ -21,7 +21,8 @@
     <div class="comments">
         {% for comment in session.comments.all %}
             <div class="comment">
-                <p>{{ comment.text|linebreaks }}</p>
+                {% load md2 %}
+                <p>{{ comment.text|markdown:"safe"|linebreaks }}</p>
                 <hr>
             </div>
         {% empty %}

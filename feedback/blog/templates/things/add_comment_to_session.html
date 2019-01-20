@@ -21,6 +21,7 @@
         Zpětná vazba je anonymní.</p>
     </div>
     <form method="POST" class="session-form">
+
         {% csrf_token %}
         {{ form }}
         <div class="btn-save">

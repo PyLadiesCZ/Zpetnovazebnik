@@ -5,6 +5,7 @@ from blog.forms import SessionForm, CommentForm, CourseForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import Context
 from django.http import Http404
+import mistune
 import os
 
 
