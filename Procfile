@@ -1,1 +1,1 @@
-web: gunicorn feedback.feedback.wsgi:application
+web: gunicorn feedback.wsgi:application
