@@ -45,7 +45,7 @@ def add_comment_to_session(request, course_slug, session_slug, password):
             comment.session = session
             comment.course = course
             comment.save()
-            return redirect('session_detail', course_slug=course.slug, slug=session.session_slug)
+            return redirect('session_detail', course_slug=course.slug, session_slug=session.slug)
     else:
         form = CommentForm()
     return render(request, 'things/add_comment_to_session.html', {'form': form, 'session':session, 'course':course,})
