@@ -8,6 +8,15 @@ from blog.models import Course, Session
 
 URL_TEMPLATE = 'https://naucse.python.cz/v0/{}.json'
 
+def parse_datetime(date_string):
+    """Get a datetime object from a string value"""
+    try:
+        return datetime.datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S%z')
+    except ValueError:
+        # Workaround for https://github.com/pyvec/naucse.python.cz/issues/525
+        result = datetime.datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S')
+        return timezone.now().tzinfo.localize(result)
+
 
 
 class Command(BaseCommand):
@@ -50,12 +59,6 @@ class Command(BaseCommand):
                     print(f'Updating {session!r}')
                 session.title = f'Lekce {number}'
                 session.text = session_info['title']
-                published_date = datetime.datetime.fromisoformat(
-                    session_info['time']['start'],
-                )
-                if published_date.tzinfo == None:
-                    # Update timezone. Workaround for:
-                    # https://github.com/pyvec/naucse.python.cz/issues/525
-                    published_date = timezone.now().tzinfo.localize(published_date)
+                published_date = parse_datetime(session_info['time']['start'])
                 session.published_date = published_date
                 session.save()
