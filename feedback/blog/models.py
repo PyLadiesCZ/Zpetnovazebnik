@@ -22,6 +22,7 @@ class Session(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions')
     title = models.CharField(max_length=200)
     text = models.TextField()
+    slug = models.SlugField(max_length=250)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -30,6 +31,9 @@ class Session(models.Model):
         self.save()
     def __str__(self):
         return self.title
+
+    class Meta:
+        unique_together = ("course", "slug")
 
 
 class Comment(models.Model):
