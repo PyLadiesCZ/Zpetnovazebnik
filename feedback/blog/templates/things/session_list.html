@@ -1,23 +1,28 @@
 {% extends 'things/base.html' %}
-
 {% block content %}
 {% if sessions.count > 1 %}
     <h2 class="current_session">Aktuální lekce:</h2>
 {% endif %}
 <div class="session-list">
     {% for session in current_sessions %}
-        <a href="{% url 'session_detail' course_name=course.course_name pk=session.pk %}">
+        <a href="{% url 'session_detail' course_slug=course.slug pk=session.pk %}">
             <div class="session">
-                <h2>{{ session.title }}</h2>
-                <p>{{ session.text|linebreaksbr }}</p>
+                <div class="session-name">
+                    <h2>{{ session.title }}</h2>
+                    <p>{{ session.text|linebreaksbr }}</p>
+                </div>
+                <div class="session-info">
                 <div class="date">
                     {{ session.published_date }}
-                </div>
+                </div >
+                <div class="plpink">
                     {% if session.comments.count == 0 %}
-                        <spnt>Přidej první hodnocení!</span>
+                        <p>Přidej první hodnocení!</p>
                     {% else %}
-                        <spnt>Hodnocení: {{ session.comments.count }}</span>
+                        <p>Hodnocení: {{ session.comments.count }}</p>
                     {% endif %}
+                </div >
+                </div>
             </div>
         </a>
     {% endfor %}
@@ -27,18 +32,24 @@
 {% endif %}
 <div class="session-list">
     {% for session in past_sessions %}
-        <a href="{% url 'session_detail' course_name=course.course_name pk=session.pk %}">
+        <a href="{% url 'session_detail' course_slug=course.slug pk=session.pk %}">
             <div class="session">
-                <h2>{{ session.title }}</h2>
-                <p>{{ session.text|linebreaksbr }}</p>
+                <div class="session-name">
+                    <h2>{{ session.title }}</h2>
+                    <p>{{ session.text|linebreaksbr }}</p>
+                </div>
+                <div class="session-info">
                 <div class="date">
                     {{ session.published_date }}
                 </div>
-                {% if session.comments.count == 0 %}
-                    <spnt>Přidej první hodnocení!</span>
-                {% else %}
-                    <spnt>Hodnocení: {{ session.comments.count }}</span>
-                {% endif %}
+                <div class="plpink">
+                    {% if session.comments.count == 0 %}
+                        <p>Přidej první hodnocení!</p>
+                    {% else %}
+                        <p>Hodnocení: {{ session.comments.count }}</p>
+                    {% endif %}
+                </div >
+            </div>
             </div>
         </a>
     {% endfor %}

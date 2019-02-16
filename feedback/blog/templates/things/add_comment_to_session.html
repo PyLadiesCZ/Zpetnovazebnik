@@ -2,7 +2,6 @@
 
 {% block content %}
 <div class="session-detail">
-
     <div class="comments">
         <div class="comment-header">
         <h2>{{ session.title }}</h2>
@@ -21,7 +20,6 @@
         Zpětná vazba je anonymní.</p>
     </div>
     <form method="POST" class="session-form">
-
         {% csrf_token %}
         {{ form }}
         <div class="btn-save">

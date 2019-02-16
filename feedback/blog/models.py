@@ -4,11 +4,16 @@ from django.utils import timezone
 
 class Course(models.Model):
     course_name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=250)
     published_date = models.DateTimeField(blank=True, null=True)
     password = models.CharField(max_length=10)
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+    def save(self, *args, **kwargs):
+        if self.slug == None:
+            self.slug = slugify(self.name, allow_unicode=True)
+        return super().save(*args, **kwargs)
     def __str__(self):
         return self.course_name
 
@@ -25,6 +30,7 @@ class Session(models.Model):
         self.save()
     def __str__(self):
         return self.title
+
 
 class Comment(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='comments')
