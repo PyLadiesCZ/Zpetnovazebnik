@@ -34,7 +34,7 @@ def session_detail(request, course_slug, session_slug):
 
 def add_comment_to_session(request, course_slug, session_slug, password):
     course = get_object_or_404(Course, slug=course_slug)
-    session = get_object_or_404(Session, slug=session_slug)
+    session = get_object_or_404(Session, course=course, slug=session_slug)
     if password != course.password:
         raise Http404
     if request.method == "POST":
