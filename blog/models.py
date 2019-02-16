@@ -1,12 +1,18 @@
+import secrets
+
 from django.db import models
 from django.utils import timezone
+
+
+def make_random_password():
+    return secrets.token_urlsafe(8)
 
 
 class Course(models.Model):
     course_name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=250, unique=True)
     published_date = models.DateTimeField(blank=True, null=True)
-    password = models.CharField(max_length=10)
+    password = models.CharField(max_length=50, default=make_random_password)
     def publish(self):
         self.published_date = timezone.now()
         self.save()
