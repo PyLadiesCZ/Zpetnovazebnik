@@ -1,1 +1,1 @@
-waitress-serve --port=$PORT feedback.feedback.wsgi:application
+web: gunicorn feedback.feedback.wsgi:application
