@@ -3,19 +3,22 @@ import datetime
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
 import requests
+import pytz
 
 from blog.models import Course, Session
 
 URL_TEMPLATE = 'https://naucse.python.cz/v0/{}.json'
+
+
 
 def parse_datetime(date_string):
     """Get a datetime object from a string value"""
     try:
         return datetime.datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S%z')
     except ValueError:
-        # Workaround for https://github.com/pyvec/naucse.python.cz/issues/525
         result = datetime.datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S')
-        return timezone.now().tzinfo.localize(result)
+        # Workaround for https://github.com/pyvec/naucse.python.cz/issues/525
+        return pytz.timezone('Europe/Prague').localize(result)
 
 
 
