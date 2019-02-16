@@ -13,7 +13,7 @@
         </div >
         <div class="plpink">
             {% if session.comments.count == 0 %}
-                <p>Přidej první hodnocení!</p>
+                <p>Lekci zatím nikdo nehodnotil.</p>
             {% else %}
                 <p>Hodnocení: {{ session.comments.count }}</p>
             {% endif %}
