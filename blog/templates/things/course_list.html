@@ -1,11 +1,13 @@
 {% extends 'things/base.html' %}
 
 {% block content %}
+<div class="course-name pltext">
 {% for course in courses %}
     <a href="{% url 'session_list' course_slug=course.slug %}">
-        <div class="course pltext ">
+        <div class="course pltext border-b-m">
             <p>{{ course.course_name }}</p>
         </div>
     </a>
 {% endfor %}
+</div>
 {% endblock content %}

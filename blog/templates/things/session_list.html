@@ -1,12 +1,19 @@
 {% extends 'things/base.html' %}
 {% block content %}
+
+<header>
+
+<p class="course-name pltext">{{ course }}</p>
+
+
+</header>
 {% if sessions.count > 1 %}
     <h2 class="current_session">Aktuální lekce:</h2>
 {% endif %}
 <div class="session-list">
     {% for session in current_sessions %}
         <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
-            <div class="session">
+            <div class="session blg">
                 <div class="session-name">
                     <h2>{{ session.title }}</h2>
                     <p>{{ session.text|linebreaksbr }}</p>
@@ -33,7 +40,7 @@
 <div class="session-list">
     {% for session in past_sessions %}
         <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
-            <div class="session">
+            <div class="session blg">
                 <div class="session-name">
                     <h2>{{ session.title }}</h2>
                     <p>{{ session.text|linebreaksbr }}</p>
