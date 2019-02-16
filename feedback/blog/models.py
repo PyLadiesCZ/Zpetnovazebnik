@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Course(models.Model):
     course_name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, unique=True)
     published_date = models.DateTimeField(blank=True, null=True)
     password = models.CharField(max_length=10)
     def publish(self):
