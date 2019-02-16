@@ -1,8 +1,11 @@
 {% extends 'things/base.html' %}
 {% block content %}
+<header>
+<a href="{% url 'session_list' course_slug=course.slug %}"><p class="course-name pltext">{{ course }}</p></a>
+</header>
 <h2 class="current_session">Hodnocení lekce:</h2>
 <div class="session-detail">
-    <div class="session">
+    <div class="session blg">
         <div class="session-name">
             <h2>{{ session.title }}</h2>
             <p>{{ session.text|linebreaksbr }}</p>
@@ -20,12 +23,13 @@
         </div >
         </div>
     </div>
-    <div class="comments">
+    <div class="comments blp">
         {% for comment in session.comments.all %}
             <div class="comment">
+                <div class="date">{{ comment.created_date }}</div >
                 {% load md2 %}
                 <p>{{ comment.text|markdown:"safe"|linebreaks }}</p>
-                <div class="date">{{ comment.created_date }}</div >
+
                 <hr>
             </div>
         {% empty %}

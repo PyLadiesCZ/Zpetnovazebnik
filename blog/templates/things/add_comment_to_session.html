@@ -1,12 +1,18 @@
 {% extends 'things/base.html' %}
 
 {% block content %}
+<header>
+<a href="{% url 'session_list' course_slug=course.slug %}"><p class="course-name pltext">{{ course }}</p></a>
+</header>
 <div class="session-detail">
-    <div class="comments">
+    <div class="comments-info blg">
         <div class="comment-header">
-        <h2>{{ session.title }}</h2>
+            <div class="session-name">
+                <h2>{{ session.title }}</h2>
+                <p>{{ session.text|linebreaksbr }}</p>
+            </div>
         {% if session.published_date %}
-            <div class="date">
+            <div class="course-date">
                 {{ session.published_date }}
             </div>
         {% endif %}

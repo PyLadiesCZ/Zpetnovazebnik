@@ -20,7 +20,7 @@ h2 {
     text-decoration:none;
 }
 .plpink {
-    color: #e00218
+    color: #e51f40
 }
 .pltext {
     color: #555555
@@ -31,16 +31,17 @@ a {
 }
 a:hover {
 	text-decoration: none;
-	color: #e00218;
+	color: #e51f40;
 }
-p a:hover {
+.content header a:hover, .content .course p:hover {
 	text-decoration: underline;
+    color: #555555;
 }
-.pull-right li {
-	padding-top: 10px;
+.blg {
+    border-left: 6px solid #979797;
 }
-.smaller {
-	font-size: 25px !important;
+.blp{
+    border-left: 6px solid #e51f40;
 }
 
 /*  HEADER  */
@@ -58,6 +59,7 @@ p a:hover {
 }
 .page-header h1 {
     margin: 1vw;
+
 }
 .header-text {
     display: block;
@@ -65,8 +67,15 @@ p a:hover {
     font-size: 10vw;
 }
 .course-name {
-    padding: 5%;
-    width: 90%;
+    width: 100%;
+    text-align: left;
+    color: #050505;
+    font-size: 1.2em;
+    font-weight: bold;
+
+}
+.border-b-m {
+    border-bottom: 1px solid #979797;
 }
 @media all and (min-width: 500px) {
     .logo2 {
@@ -77,46 +86,38 @@ p a:hover {
     }
     .page-header {
         height:19vw;
-        margin: 0
+        margin: 0;
     }
 }
 @media all and (min-width: 740px) {
     .course-name {
-    width: 70%;
-    padding: 5% 1%;
-    text-align: right;
-    margin: -22px 0% 3px auto;
-    color: #050505;
-    font-size: 2em;
+        font-size: 2em;
+         padding: 2% 5%;
     }
     .page-header h1 {
-        margin: -5.5vw -1.6vw
+        margin: -5.5vw -1vw
     }
     .header-text {
         display: block;
-        width: 114%;
-        font-size: 13vw;
+        width: 105%;
+        font-size: 12.8vw;
+    }
+    .border-b-m {
+        border-bottom: none;
     }
 }
 
-/*  COURSE  */
-.course-list {
-    margin: auto;
-}
-.course {
-    padding: 10px;
-    margin: 10px auto;
-    width: 90%;
-}
-.course p {
-    font-weight: 600;
+/*    */
+
+.course-date {
+    display: none
 }
 .date {
     font-size: 0.8em;
     margin: 0.5em 0 2em;
+    display: inherit;
 }
 .session {
-    border-left: 6px solid #e00218;
     background-color: #f1f1f1;
     padding: 14px 14px;
     margin-bottom: 1em;
@@ -124,7 +125,10 @@ p a:hover {
     color: #555555;
     font-size: 1em;
 }
-.session h2, .course h2 {
+.session-list>a>.session:hover {
+    border-left: 6px solid #fa023c;
+}
+.session h2, . h2 {
     margin: 5px 0 10px;
     font-weight: 600;
 }
@@ -161,9 +165,8 @@ p a:hover {
 }
 .session-detail textarea {
     padding: 6px 10px 0;
-    border: 4px solid #fa023c;
+    border: 6px solid #e51f40;
     width: 100%;
-
     display: block;
     font-size: 1em;
 }
@@ -184,6 +187,8 @@ p a:hover {
         font-size: 1.4em;
         line-height: 1;
         margin-right: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
     }
     .session-info, .session-info>p, .date {
         margin: 0;
@@ -197,7 +202,7 @@ p a:hover {
         padding-top: 10px;
     }
     .session {
-        margin: 0;
+        margin: 0 0 3%;
     }
     .current_session {
         padding: 1% 10%;
@@ -215,11 +220,11 @@ p a:hover {
         width: 100%;
     }
 }
-
-
 @media all and (min-width: 740px){
-    .session-list.session:hover {
-        border-left: 6px solid green;
+    .course-date {
+        font-size: 0.8em;
+        margin: 0.5em 0 2em;
+        display: inherit;
     }
     .current_session {
         padding: 0 5%;
@@ -229,19 +234,20 @@ p a:hover {
          padding: 2% 5%;
     }
     .session-list a, .session-detail a {
-        padding: 1% 0% 0%;
-    }
-    .session {
-        width: 70%;
-    }
-    .session-detail textarea {
-        width: 70%;
+        padding: 0;
     }
     .content {
         width: 100%
     }
+    .session-detail textarea {
+        width: 70%;
+    }
 }
-
+@media all and (min-width: 1000px){
+    .session {
+        width: 70%;
+    }
+}
 /*  COMMENTS  */
 .save {
     float: right;
@@ -252,7 +258,13 @@ p a:hover {
     width: 100%;
     margin-top: 2em;
     background-color: #f1f1f1;
-    border-left: 6px solid #979797;
+}
+.comments-info {
+    padding: 1em;
+    display: block;
+    width: 100%;
+    margin-top: 2em;
+    background-color: #f1f1f1;
 }
 .comment-header {
     display: -webkit-box;
@@ -265,6 +277,7 @@ p a:hover {
 .comment-header>h2 {
     margin: 0;
 }
+
 .btn, .save {
     width: 250px;
     background-color: #fa023c;
@@ -282,17 +295,20 @@ p a:hover {
     display: table;
 }
 .btn:hover, .btn-save>button:hover {
-    background-color: #e00218;
+    background-color: #e51f40;
     color: white;
 }
-@media all and (min-width: 740px) {
+
+@media all and (min-width: 1000px) {
     .comments {
+        width: 70%;
+    }
+    .comments-info {
         width: 70%;
     }
 }
 
 /*  FOOTER  */
-
 .footer {
     background: #333;
     color: rgba(255, 255, 255, 0.2);
@@ -304,7 +320,7 @@ p a:hover {
     padding: 15px;
 }
 .footer .global-pyladies {
-    margin-top: 26px;
+    margin: 26px;
     color: #aeacad;
     float: left;
 }
