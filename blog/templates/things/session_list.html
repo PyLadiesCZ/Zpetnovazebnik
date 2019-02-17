@@ -1,11 +1,8 @@
 {% extends 'things/base.html' %}
 {% block content %}
 
-<header>
-
-<p class="course-name pltext">{{ course }}</p>
-
-
+<header class="course-name pltext" >
+    <p>{{ course }}</p>
 </header>
 {% if sessions.count > 1 %}
     <h2 class="current_session">Aktuální lekce:</h2>
@@ -15,10 +12,11 @@
         <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
             <div class="session blg">
                 <div class="session-name">
-                    <h2>{{ session.title }}</h2>
-                    <p>{{ session.text|linebreaksbr }}</p>
+                    <p>{{ session.title }}</p>
+
                 </div>
                 <div class="session-info">
+                <p>{{ session.text|linebreaksbr }}</p>
                 <div class="date">
                     {{ session.published_date }}
                 </div >
@@ -42,7 +40,7 @@
         <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
             <div class="session blg">
                 <div class="session-name">
-                    <h2>{{ session.title }}</h2>
+                    <p>{{ session.title }}</p>
                     <p>{{ session.text|linebreaksbr }}</p>
                 </div>
                 <div class="session-info">
@@ -51,7 +49,7 @@
                 </div>
                 <div class="plpink">
                     {% if session.comments.count == 0 %}
-                        <p>Přidej první hodnocení!</p>
+                        <p>Lekci zatím nikdo nehodnotil.</p>
                     {% else %}
                         <p>Hodnocení: {{ session.comments.count }}</p>
                     {% endif %}

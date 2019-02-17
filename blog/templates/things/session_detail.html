@@ -1,7 +1,9 @@
 {% extends 'things/base.html' %}
 {% block content %}
-<header>
-<a href="{% url 'session_list' course_slug=course.slug %}"><p class="course-name pltext">{{ course }}</p></a>
+<header  class="course-name">
+    <a class="course pltext border-b" href="{% url 'session_list' course_slug=course.slug %}">
+        <p>{{ course }}</p>
+    </a>
 </header>
 <h2 class="current_session">Hodnocení lekce:</h2>
 <div class="session-detail">
