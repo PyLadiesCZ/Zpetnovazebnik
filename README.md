@@ -32,7 +32,7 @@ Nainstalovanou aplikaci spustíš následovně:
   ```console
   $ python -m pip install -r requirements.txt
   ```
- * Proveď migraci:
+* Proveď migraci:
   ```console
   $ python manage.py migrate
   ```
