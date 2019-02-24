@@ -33,7 +33,7 @@ Nainstalovanou aplikaci spustíš následovně:
   $ python -m pip install -r requirements.txt
   ```
  * Proveď migraci:
-   ```console
+  ```console
   $ python manage.py migrate
   ```
 * Spusť vývojový server:
