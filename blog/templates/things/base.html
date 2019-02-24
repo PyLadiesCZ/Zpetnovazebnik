@@ -12,22 +12,16 @@
         </title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
         <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}" />
-
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext" rel="stylesheet" rel='stylesheet' type='text/css'>
     </head>
 
     <body>
-        <div class="page-header">
-            <a href=/>
-                <!-- <div class="logo">
-                     <img class="logo2" src="{% static 'img/pyladies.png' %}" alt="pyladies-logo">
-                </div> -->
-                <div class="header-text ">
-                    <h1>Zpětná vazba</h1>
-                </div>
-            </a>
+        <a href="/">
+        <div class="page-header ">
+                <img class="logo" src="{% static 'img/pyladies.png' %}" alt="pyladies-logo">
+                <h1 class="header-text">Zpětná vazba</h1>
         </div>
-
+        </a>
         <div class="content">
              {% block content %}
              {% endblock %}

@@ -8,7 +8,7 @@
     <div class="comments-info blg">
         <div class="comment-header">
             <div class="session-name">
-                <h2>{{ session.title }}</h2>
+                <p>{{ session.title }}</p>
                 <p>{{ session.text|linebreaksbr }}</p>
             </div>
         {% if session.published_date %}
@@ -17,12 +17,17 @@
             </div>
         {% endif %}
         </div>
-        <h2>Napiš nám, jak se ti dnešní sraz líbil.</h2>
-        <p>Ty se učíš Python, my se zase učíme, jak Python vyučovat.
+        <h2>Napiš nám zpětnou vazbu.</h2>
+        <p>Ty se učíš programovat, my se zase učíme, jak vyučovat.
         Chceme připravovat lepší kurzy, a proto potřebujeme tvou zpětnou vazbu.
-        Stíhala jsi? Rozuměla jsi všemu? Pokud ne - čemu? Byla pro Tebe lekce moc těžká/lehká/akorát?
-        Když jsi potřebovala, pomohl Ti kouč? Můžeme něco vylepšit? Chceš nás zkritizovat?
-        Jen do toho!
+        Napiš nám, jak se ti dnešní sraz líbil.<br><br>
+        Stíhala jsi?<br>
+        Rozuměla jsi všemu? Pokud ne - čemu? <br>
+        Byla pro Tebe lekce moc těžká/lehká/akorát?<br>
+        Když jsi potřebovala, pomohl Ti kouč? <br>
+        Můžeme něco vylepšit? <br>
+        Chceš se nás na něco zeptat? <br>
+        Chceš nás zkritizovat? Jen do toho!<br><br>
         Zpětná vazba je anonymní.</p>
     </div>
     <form method="POST" class="session-form">
