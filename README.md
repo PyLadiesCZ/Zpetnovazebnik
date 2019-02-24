@@ -1,6 +1,6 @@
-## O co jde?
+# Zpětnovazebník
 
-Zpětnovazebník je stránka na které se shromažďují zpětné vazby z jednotlivých lekcí kurzů a workshopů PyLadies https://pyladies.cz/,
+Web pro sbírání zpětné vazby z jednotlivých lekcí kurzů a workshopů PyLadies https://pyladies.cz/,
 Zpětnou vazbu přidávají účastníci a koučové ze "zaheslovaného" odkazu.
 Kurz je na Zpětnovazebník možné přidat ručně přes /admin rozhraní, nebo importem celého kurzu z API  https://naucse.python.cz/.
 
@@ -28,6 +28,14 @@ Kurz je na Zpětnovazebník možné přidat ručně přes /admin rozhraní, nebo
 Nainstalovanou aplikaci spustíš následovně:
 
 * (nepovinné) Aktivuj si virtuální prostředí, máš-li ho vytvořené.
+* Nainstaluj závislosti:
+  ```console
+  $ python -m pip install -r requirements.txt
+  ```
+ * Proveď migraci:
+   ```console
+  $ python manage.py migrate
+  ```
 * Spusť vývojový server:
   ```console
   $ python manage.py runserver

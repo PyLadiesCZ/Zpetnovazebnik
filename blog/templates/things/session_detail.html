@@ -9,7 +9,7 @@
 <div class="session-detail">
     <div class="session blg">
         <div class="session-name">
-            <h2>{{ session.title }}</h2>
+            <p>{{ session.title }}</p>
             <p>{{ session.text|linebreaksbr }}</p>
         </div>
         <div class="session-info">
@@ -20,10 +20,13 @@
             {% if session.comments.count == 0 %}
                 <p>Lekci zatím nikdo nehodnotil.</p>
             {% else %}
-                <p>Hodnocení: {{ session.comments.count }}</p>
+                <p class="session-name">Hodnocení: {{ session.comments.count }}</p>
             {% endif %}
         </div >
         </div>
+    </div>
+    <div class="comment-info">
+        <p>Odkaz pro přidání zpětné vazby dostaneš od organizátorky.</p>
     </div>
     <div class="comments blp">
         {% for comment in session.comments.all %}
