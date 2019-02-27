@@ -12,7 +12,9 @@
         <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
             <div class="session blg">
                 <div class="session-name">
-                    <p>{{ session.title }}</p>
+                    {% if session.title %}
+                        <p>{{ session.title }}</p>
+                    {% endif %}
                     <p>{{ session.text|linebreaksbr }}</p>
                 </div>
                 <div class="session-info">
@@ -40,7 +42,9 @@
         <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
             <div class="session blg">
                 <div class="session-name">
-                    <p>{{ session.title }}</p>
+                    {% if session.title %}
+                        <p>{{ session.title }}</p>
+                    {% endif %}
                     <p>{{ session.text|linebreaksbr }}</p>
                 </div>
                 <div class="session-info">

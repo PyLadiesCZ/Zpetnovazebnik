@@ -8,4 +8,4 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('text', 'session', 'course')
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'course', )
+    list_display = ('title', 'text', 'course', )

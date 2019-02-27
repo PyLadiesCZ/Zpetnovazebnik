@@ -9,7 +9,9 @@
 <div class="session-detail">
     <div class="session blg">
         <div class="session-name">
-            <p>{{ session.title }}</p>
+            {% if session.title %}
+                <p>{{ session.title }}</p>
+            {% endif %}
             <p>{{ session.text|linebreaksbr }}</p>
         </div>
         <div class="session-info">
