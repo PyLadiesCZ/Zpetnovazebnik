@@ -48,7 +48,7 @@ class Command(BaseCommand):
             course.course_name = course_info['title']
         course.save()
 
-        for number, session_info in enumerate(course_info['sessions'], start=1):
+        for session_info in course_info['sessions']:
             if 'time' not in session_info:
                 print(f'Skipping session without time: {session_info["title"]}')
             else:
@@ -60,7 +60,10 @@ class Command(BaseCommand):
                     print(f'Added {session!r}')
                 else:
                     print(f'Updating {session!r}')
-                session.title = f'Lekce {number}'
+                if 'serial' in session_info:
+                    session.title = f'Lekce {session_info["serial"]}'
+                else:
+                    session.title = None
                 session.text = session_info['title']
                 published_date = parse_datetime(session_info['time']['start'])
                 session.published_date = published_date

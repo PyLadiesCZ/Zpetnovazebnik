@@ -8,7 +8,9 @@
     <div class="comments-info blg">
         <div class="comment-header">
             <div class="session-name">
-                <p>{{ session.title }}</p>
+                {% if session.title %}
+                    <p>{{ session.title }}</p>
+                {% endif %}
                 <p>{{ session.text|linebreaksbr }}</p>
             </div>
         {% if session.published_date %}

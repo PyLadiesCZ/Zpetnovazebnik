@@ -26,7 +26,7 @@ class Course(models.Model):
 
 class Session(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sessions')
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=True, null=True)
     text = models.TextField()
     slug = models.SlugField(max_length=250)
     created_date = models.DateTimeField(default=timezone.now)
@@ -36,7 +36,10 @@ class Session(models.Model):
         self.published_date = timezone.now()
         self.save()
     def __str__(self):
-        return self.title
+        if self.title:
+            return self.title
+        else:
+            return self.text
 
     class Meta:
         unique_together = ("course", "slug")
