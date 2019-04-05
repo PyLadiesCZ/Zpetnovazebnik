@@ -1,5 +1,5 @@
 {% extends 'things/base.html' %}
-
+{% load md2 %}
 {% block content %}
 <header>
 <a href="{% url 'session_list' course_slug=course.slug %}"><p class="course-name pltext">{{ course }}</p></a>
@@ -20,17 +20,21 @@
         {% endif %}
         </div>
         <h2>Napiš nám zpětnou vazbu.</h2>
-        <p>Ty se učíš programovat, my se zase učíme, jak vyučovat.
-        Chceme připravovat lepší kurzy, a proto potřebujeme tvou zpětnou vazbu.
-        Napiš nám, jak se ti dnešní sraz líbil.<br><br>
-        Stíhala jsi?<br>
-        Rozuměla jsi všemu? Pokud ne - čemu? <br>
-        Byla pro Tebe lekce moc těžká/lehká/akorát?<br>
-        Když jsi potřebovala, pomohl Ti kouč? <br>
-        Můžeme něco vylepšit? <br>
-        Chceš se nás na něco zeptat? <br>
-        Chceš nás zkritizovat? Jen do toho!<br><br>
-        Zpětná vazba je anonymní.</p>
+        {% if session.course.text %}
+            {{ session.course.text|markdown:"safe"|linebreaks }}
+        {% else %}
+            <p>Ty se učíš programovat, my se zase učíme, jak vyučovat.
+            Chceme připravovat lepší kurzy, a proto potřebujeme tvou zpětnou vazbu.
+            Napiš nám, jak se ti dnešní sraz líbil.<br><br>
+            Stíhala jsi?<br>
+            Rozuměla jsi všemu? Pokud ne - čemu? <br>
+            Byla pro Tebe lekce moc těžká/lehká/akorát?<br>
+            Když jsi potřebovala, pomohl Ti kouč? <br>
+            Můžeme něco vylepšit? <br>
+            Chceš se nás na něco zeptat? <br>
+            Chceš nás zkritizovat? Jen do toho!<br><br>
+            Zpětná vazba je anonymní.</p>
+        {% endif %}
     </div>
     <form method="POST" class="session-form">
         {% csrf_token %}

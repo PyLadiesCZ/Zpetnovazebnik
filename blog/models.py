@@ -11,6 +11,7 @@ def make_random_password():
 class Course(models.Model):
     course_name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=250, unique=True)
+    text = models.TextField(blank=True, null=True)
     published_date = models.DateTimeField(blank=True, null=True)
     password = models.CharField(max_length=50, default=make_random_password)
     def publish(self):
