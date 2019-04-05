@@ -1,4 +1,5 @@
 {% extends 'things/base.html' %}
+{% load md2 %}
 {% block content %}
 <header  class="course-name">
     <a class="course pltext border-b" href="{% url 'session_list' course_slug=course.slug %}">
@@ -34,9 +35,7 @@
         {% for comment in session.comments.all %}
             <div class="comment">
                 <div class="date">{{ comment.created_date }}</div >
-                {% load md2 %}
                 <p>{{ comment.text|markdown:"safe"|linebreaks }}</p>
-
                 <hr>
             </div>
         {% empty %}
