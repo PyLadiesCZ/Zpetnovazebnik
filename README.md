@@ -7,23 +7,7 @@ Kurz je na Zpětnovazebník možné přidat ručně přes /admin rozhraní, nebo
 
 ## Instalace a spuštění
 
-* (nepovinné) Vytvoř a aktivuj si [virtuální prostředí](https://naucse.python.cz/lessons/beginners/install/) v Pythonu 3.6.
-* Přepni se do adresáře s kódem projektu.
-* Nainstaluj závislosti:
-
-  * Linux/Mac:
-
-    ```console
-    $ python3 -m pip install pipenv
-    $ pipenv install
-    ```
-
-  * Windows:
-
-    ```doscon
-    > py -3 -m pip install pipenv
-    > pipenv install
-    ```
+* Přepni se do adresáře s kódem projektu. 
 
 Nainstalovanou aplikaci spustíš následovně:
 
