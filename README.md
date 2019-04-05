@@ -14,7 +14,7 @@ Nainstalovanou aplikaci spustíš následovně:
 * (nepovinné) Aktivuj si virtuální prostředí, máš-li ho vytvořené.
 * Nainstaluj závislosti:
   ```console
-  $ python -m pip install -r requirements.txt
+  $ python -m pip install -r requirements-local.txt
   ```
 * Proveď migraci:
   ```console
