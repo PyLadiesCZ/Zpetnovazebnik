@@ -39,8 +39,10 @@ class Session(models.Model):
     def __str__(self):
         if self.title:
             return self.title
-        else:
+        elif self.text:
             return self.text
+        else:
+            return '(no title)'
 
     class Meta:
         unique_together = ("course", "slug")
