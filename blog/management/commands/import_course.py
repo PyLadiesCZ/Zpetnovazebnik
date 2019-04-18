@@ -37,15 +37,17 @@ class Command(BaseCommand):
         course_info = response.json()['course']
         course_slug = course_slug.replace('/', '-')
         course, created = Course.objects.get_or_create(slug=course_slug)
+        if 'subtitle' in course_info:
+            course.course_name = f"{course_info['title']} – {course_info['subtitle']}"
+        else:
+            course.course_name = course_info['title']
+
         if created:
             print(f'Added {course!r}')
             course.published_date = timezone.now()
         else:
             print(f'Updating {course!r}')
-        if 'subtitle' in course_info:
-            course.course_name = f"{course_info['title']} – {course_info['subtitle']}"
-        else:
-            course.course_name = course_info['title']
+
         course.save()
 
         for session_info in course_info['sessions']:
@@ -56,10 +58,6 @@ class Command(BaseCommand):
                     course=course,
                     slug=session_info['slug'],
                 )
-                if created:
-                    print(f'Added {session!r}')
-                else:
-                    print(f'Updating {session!r}')
                 if 'serial' in session_info:
                     session.title = f'Lekce {session_info["serial"]}'
                 else:
@@ -67,4 +65,10 @@ class Command(BaseCommand):
                 session.text = session_info['title']
                 published_date = parse_datetime(session_info['time']['start'])
                 session.published_date = published_date
+
+                if created:
+                    print(f'Added {session!r}')
+                else:
+                    print(f'Updating {session!r}')
+
                 session.save()
