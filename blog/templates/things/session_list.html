@@ -5,7 +5,7 @@
     <p>{{ course }}</p>
 </header>
 {% if sessions.count > 1 %}
-    <h2 class="current_session">Aktuální lekce:</h2>
+    <h2 class="current_session">Aktuální lekce</h2>
 {% endif %}
 <div class="session-list">
     {% for session in current_sessions %}
@@ -35,7 +35,7 @@
     {% endfor %}
 </div>
 {% if sessions.count > 1 %}
-    <h2 class="current_session">Proběhlé lekce:</h2>
+    <h2 class="current_session">Proběhlé lekce</h2>
 {% endif %}
 <div class="session-list">
     {% for session in past_sessions %}

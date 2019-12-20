@@ -2,10 +2,23 @@
 
 {% block content %}
 <header class="course-name">
-{% for course in courses %}
-    <a class="course pltext border-b" href="{% url 'session_list' course_slug=course.slug %}">
-        <p>{{ course.course_name }}</p>
-    </a>
-{% endfor %}
+    
+    {% if current_courses %}
+       <h2>Aktuální kurzy</h2>
+    {% endif %}
+    {% for course in current_courses %}
+            <a class="course pltext border-b" href="{% url 'session_list' course_slug=course.slug %}">
+                <p>{{ course.course_name }}</p>
+            </a>
+    {% endfor %}
+    
+    {% if past_courses %}
+        <h2>Proběhlé kurzy</h2>
+    {% endif %}
+    {% for course in past_courses %}
+        <a class="course pltext border-b" href="{% url 'session_list' course_slug=course.slug %}">
+            <p>{{ course.course_name }}</p>
+        </a>
+    {% endfor %}
 </header>
 {% endblock content %}
