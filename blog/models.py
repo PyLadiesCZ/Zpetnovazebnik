@@ -13,6 +13,7 @@ class Course(models.Model):
     slug = models.SlugField(max_length=250, unique=True)
     text = models.TextField(help_text="Pokud pole zůstane prázdné, vloží se automaticky obecný text k PyLadies kurzům", blank=True, null=True)
     published_date = models.DateTimeField(blank=True, null=True)
+    archived = models.BooleanField(default=False)
     password = models.CharField(help_text="Heslo se generuje automaticky, ale je možné vyplnit vlastní. Slouží jako součást URL pro zadávání zpětné vazby.", max_length=50, default=make_random_password)
     def publish(self):
         self.published_date = timezone.now()

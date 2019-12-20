@@ -11,8 +11,9 @@ import os
 
 
 def course_list(request):
-    courses = Course.objects.filter(published_date__lte=timezone.now()).order_by('published_date').reverse()
-    return render(request, 'things/course_list.html', {'courses': courses})
+    current_courses = Course.objects.filter(archived=False).filter(published_date__lte=timezone.now()).order_by('published_date').reverse()
+    past_courses = Course.objects.filter(archived=True).filter(published_date__lte=timezone.now()).order_by('published_date').reverse()
+    return render(request, 'things/course_list.html', {'current_courses': current_courses, 'past_courses':past_courses})
 
 
 def session_list(request, course_slug):
