@@ -1,4 +1,4 @@
 -r requirements-local.txt
 gunicorn==19.9.0
 psycopg2==2.7.3.2
-waitress==1.1.0
+waitress==1.4.1
