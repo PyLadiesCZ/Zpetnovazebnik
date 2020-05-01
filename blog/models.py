@@ -22,7 +22,8 @@ class NaucseSlugField(models.CharField):
     """
     default_validators = [RegexValidator('[-_a-z0-9/]+')]
 
-    def to_python(self, value):
+    @staticmethod
+    def to_python(value):
         if not value:
             return None
         match = NAUCSE_URL_RE.match(value)
@@ -62,12 +63,48 @@ class Course(models.Model):
     def __str__(self):
         return self.course_name
 
-    def update_from_naucse(self, report_progress):
+    @classmethod
+    def create_from_naucse(cls, slug, report_progress=print):
+        """Create a new course given a slug (or URL) for naucse
+
+        Calls the `report_progress` function with status updates.
+        Raises ValueError on failure.
+        """
+        naucse_slug = NaucseSlugField.to_python(slug)
+        course_slug = naucse_slug.replace('/', '-')
+        course, created = Course.objects.get_or_create(
+            slug=course_slug,
+        )
+        if created:
+            course.naucse_slug = naucse_slug
+        else:
+            raise ValueError(f'Course exists: {course_slug}')
+
+        try:
+            course.update_from_naucse(report_progress)
+        except:
+            course.delete()
+            raise
+        return course
+
+    def update_from_naucse(self, report_progress=print):
+        """Sync this course with naucse.
+
+        Updates course name.
+        Updates sessions whose slugs match naucse.
+        Adds new sessions.
+        Does *not* delete existing sessions. (There can be feedback for
+        extra sessions that aren't on naucse.)
+
+        Calls the `report_progress` function with status updates.
+        Raises ValueError on failure (e.g. course without naucse slug).
+        """
         if self.naucse_slug == None:
             raise ValueError(f'No naucse slug for course {self.course_name}')
         url = NAUCSE_API_URL_TEMPLATE.format(self.naucse_slug)
-        report_progress(f'Getting {url}')
         response = requests.get(url)
+        if response.status_code != 200:
+            raise ValueError(f'Could not update course: {url} returned {response.status_code}')
         response.raise_for_status()
         course_info = response.json()['course']
         if 'subtitle' in course_info:
