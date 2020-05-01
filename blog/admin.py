@@ -27,7 +27,9 @@ update_from_naucse.short_description = 'Aktualizovat podle naucse'
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('course_name', 'naucse_slug')
+    search_fields = ['course_name', 'slug']
     actions = [update_from_naucse]
+    prepopulated_fields = {"slug": ("course_name",)}
 
 
 @admin.register(Comment)
@@ -37,3 +39,5 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
     list_display = ('title', 'text', 'course', )
+    prepopulated_fields = {"slug": ("title",)}
+    autocomplete_fields = ['course']
