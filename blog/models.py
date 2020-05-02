@@ -138,7 +138,7 @@ class Course(models.Model):
                 else:
                     report_progress(f'Updating {session!r}')
 
-                self.save()
+                session.save()
 
 
 class Session(models.Model):
