@@ -26,6 +26,15 @@ Nainstalovanou aplikaci spustíš následovně:
   ```
 * Program vypíše adresu (např. `http://127.0.0.1:8000/`); tu navštiv v prohlížeči.
 
+## Testy
+
+Aplikace obsahuje několik testů, které se z nainstalovaného vývojového
+prostředí dají spustit pomocí:
+
+```console
+$ python -m pytest
+```
+
 ## Licence
 
 Kód je k dispozici pod licencí MIT, viz soubor [LICENSE.MIT].
