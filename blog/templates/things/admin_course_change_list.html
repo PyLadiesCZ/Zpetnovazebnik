@@ -1,0 +1,20 @@
+{% extends "admin/change_list.html" %}
+
+{# Add the "import from naucse" button to Course admin #}
+
+{% load i18n admin_urls %}
+{% block object-tools-items %}
+    {% if has_add_permission %}
+        <li style="display:block;">
+            <form
+                action="{% url opts|admin_urlname:'add_from_naucse' %}"
+                method="POST"
+            >
+                {% csrf_token %}
+                <input type="text" name="slug" placeholder="naucse URL/slug">
+                <input value="Import z naucse" type="submit">
+            </form>
+        </li>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
