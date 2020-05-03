@@ -64,11 +64,14 @@ class Course(models.Model):
         return self.course_name
 
     @classmethod
-    def create_from_naucse(cls, slug, report_progress=print):
+    def create_from_naucse(cls, slug, report_progress=print, session=None):
         """Create a new course given a slug (or URL) for naucse
 
         Calls the `report_progress` function with status updates.
         Raises ValueError on failure.
+
+        If specified, `session` should be a Requests session to use for
+        API requests.
         """
         naucse_slug = NaucseSlugField.to_python(slug)
         course_slug = naucse_slug.replace('/', '-')
@@ -81,13 +84,13 @@ class Course(models.Model):
             raise ValueError(f'Course exists: {course_slug}')
 
         try:
-            course.update_from_naucse(report_progress)
+            course.update_from_naucse(report_progress, session=session)
         except:
             course.delete()
             raise
         return course
 
-    def update_from_naucse(self, report_progress=print):
+    def update_from_naucse(self, report_progress=print, session=None):
         """Sync this course with naucse.
 
         Updates course name.
@@ -98,11 +101,16 @@ class Course(models.Model):
 
         Calls the `report_progress` function with status updates.
         Raises ValueError on failure (e.g. course without naucse slug).
+
+        If specified, `session` should be a Requests session to use for
+        API requests.
         """
         if self.naucse_slug == None:
             raise ValueError(f'No naucse slug for course {self.course_name}')
+        if session is None:
+            session = requests.Session()
         url = NAUCSE_API_URL_TEMPLATE.format(self.naucse_slug)
-        response = requests.get(url)
+        response = session.get(url)
         if response.status_code != 200:
             raise ValueError(f'Could not update course: {url} returned {response.status_code}')
         response.raise_for_status()
@@ -138,7 +146,7 @@ class Course(models.Model):
                 else:
                     report_progress(f'Updating {session!r}')
 
-                self.save()
+                session.save()
 
 
 class Session(models.Model):
