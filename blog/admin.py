@@ -13,9 +13,9 @@ from . models import Session, Comment, Course
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('course_name', 'naucse_slug', 'is_published')
+    list_display = ('course_name', 'naucse_slug', 'is_published', 'is_archived')
     search_fields = ['course_name', 'slug']
-    actions = ['update_from_naucse']
+    actions = ['update_from_naucse', 'archive', 'unarchive']
     prepopulated_fields = {"slug": ("course_name",)}
     change_list_template = 'things/admin_course_change_list.html'
 
@@ -27,6 +27,13 @@ class CourseAdmin(admin.ModelAdmin):
         else:
             return '—'
     is_published.short_description = 'Published'
+
+    def is_archived(self, course):
+        if course.archived:
+            return '✓'
+        else:
+            return '—'
+    is_archived.short_description = 'Archived'
 
     def get_urls(self):
         urls = super().get_urls()
@@ -50,6 +57,17 @@ class CourseAdmin(admin.ModelAdmin):
             else:
                 self.msg(request, reports)
     update_from_naucse.short_description = 'Aktualizovat podle naucse'
+
+    def _make_archive_action(val, description):
+        def action(self, request, queryset):
+            for course in queryset:
+                course.archived = val
+                course.save()
+        action.short_description = description
+        return action
+
+    archive = _make_archive_action(True, 'Archivovat')
+    unarchive = _make_archive_action(False, 'Odarchivovat')
 
     def msg(self, request, msg, level=messages.INFO):
         """Add a message to the user
