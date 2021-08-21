@@ -5,7 +5,7 @@ from blog.forms import SessionForm, CommentForm, CourseForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import Context
 from django.http import Http404
-
+from datetime import timedelta
 import mistune
 import os
 
@@ -18,9 +18,17 @@ def course_list(request):
 
 def session_list(request, course_slug):
     course = get_object_or_404(Course, slug=course_slug)
-    sessions = Session.objects.filter(course=course).filter(published_date__lte=timezone.now()).order_by('published_date').reverse()
-    past_sessions = sessions[1:]
-    current_sessions = sessions[:1]
+    sessions = list(Session.objects.filter(course=course).filter(published_date__lte=timezone.now()).order_by('published_date').reverse())
+    past_sessions = []
+    current_sessions = []
+    if sessions:
+        current_session_date = (sessions[0].published_date + timedelta(days=14)).date()
+        today = timezone.now().date()
+        if current_session_date > today:
+            current_sessions = sessions[:1]
+            past_sessions = sessions[1:]
+        else:
+            past_sessions = sessions
     return render(request, 'things/session_list.html', {'past_sessions': past_sessions, 'current_sessions': current_sessions, 'sessions': sessions, 'course': course})
 
 

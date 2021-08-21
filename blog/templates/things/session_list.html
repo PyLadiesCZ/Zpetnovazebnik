@@ -4,7 +4,7 @@
 <header class="course-name pltext" >
     <p>{{ course }}</p>
 </header>
-{% if sessions.count > 1 %}
+{% if current_sessions %}
     <h2 class="current_session">Aktuální lekce</h2>
 {% endif %}
 <div class="session-list">
@@ -34,7 +34,7 @@
         </a>
     {% endfor %}
 </div>
-{% if sessions.count > 1 %}
+{% if past_sessions %}
     <h2 class="current_session">Proběhlé lekce</h2>
 {% endif %}
 <div class="session-list">
