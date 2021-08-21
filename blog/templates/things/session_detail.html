@@ -4,12 +4,7 @@
 <header  class="course-name">
     <h2>Hodnocení lekce</h2>
     <div class="session-name pltext">
-        {% if session.title %}
-        {{ session.title }}
-        {% endif %} 
-        {% if session.text != "" %}
-        – {{ session.text|linebreaksbr }}
-        {% endif %} 
+        {{ session }}
     </div>
     <a class="course pltext border-b" href="{% url 'session_list' course_slug=course.slug %}">
         <p>Zpět na seznam lekcí</p>

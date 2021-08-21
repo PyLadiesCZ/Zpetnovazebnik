@@ -161,7 +161,9 @@ class Session(models.Model):
         self.published_date = timezone.now()
         self.save()
     def __str__(self):
-        if self.title:
+        if self.title and self.text:
+            return self.title + " – " + self.text
+        elif self.title:
             return self.title
         elif self.text:
             return self.text

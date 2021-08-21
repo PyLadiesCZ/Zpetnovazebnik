@@ -6,12 +6,7 @@
 <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
 <div class="comment-header">
     <div class="session-name">
-        {% if session.title %}
-        {{ session.title }}
-        {% endif %} 
-        {% if session.text != "" %}
-        – {{ session.text|linebreaksbr }}
-        {% endif %} 
+        {{ session }}
     </div>
 </div>
 </a>
