@@ -1,25 +1,23 @@
 {% extends 'things/base.html' %}
 {% load md2 %}
 {% block content %}
-<header>
-<a href="{% url 'session_list' course_slug=course.slug %}"><p class="course-name pltext">{{ course }}</p></a>
+<header class="course-name">
+<h2>Napiš nám zpětnou vazbu.</h2>
+<a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
+<div class="comment-header">
+    <div class="session-name">
+        {% if session.title %}
+        {{ session.title }}
+        {% endif %} 
+        {% if session.text != "" %}
+        – {{ session.text|linebreaksbr }}
+        {% endif %} 
+    </div>
+</div>
+</a>
 </header>
 <div class="session-detail">
     <div class="comments-info blg">
-        <div class="comment-header">
-            <div class="session-name">
-                {% if session.title %}
-                    <p>{{ session.title }}</p>
-                {% endif %}
-                <p>{{ session.text|linebreaksbr }}</p>
-            </div>
-        {% if session.published_date %}
-            <div class="course-date">
-                {{ session.published_date }}
-            </div>
-        {% endif %}
-        </div>
-        <h2>Napiš nám zpětnou vazbu.</h2>
         {% if session.course.text %}
             {{ session.course.text|markdown:"safe"|linebreaks }}
         {% else %}

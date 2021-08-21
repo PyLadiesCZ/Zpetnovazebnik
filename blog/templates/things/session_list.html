@@ -1,21 +1,21 @@
 {% extends 'things/base.html' %}
 {% block content %}
-
-<header class="course-name pltext" >
-    <p>{{ course }}</p>
+<header class="course-name" >
+    <h2>{{ course }}</h2>
 </header>
 {% if current_sessions %}
     <h2 class="current_session">Aktuální lekce</h2>
-{% endif %}
 <div class="session-list">
     {% for session in current_sessions %}
         <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
             <div class="session blg">
                 <div class="session-name">
                     {% if session.title %}
-                        <p>{{ session.title }}</p>
-                    {% endif %}
-                    <p>{{ session.text|linebreaksbr }}</p>
+                    {{ session.title }}
+                    {% endif %} 
+                    {% if session.text != "" %}
+                    – {{ session.text|linebreaksbr }}
+                    {% endif %} 
                 </div>
                 <div class="session-info">
 
@@ -34,18 +34,21 @@
         </a>
     {% endfor %}
 </div>
+{% endif %}
 {% if past_sessions %}
     <h2 class="current_session">Proběhlé lekce</h2>
-{% endif %}
+
 <div class="session-list">
     {% for session in past_sessions %}
         <a href="{% url 'session_detail' course_slug=course.slug session_slug=session.slug %}">
             <div class="session blg">
                 <div class="session-name">
                     {% if session.title %}
-                        <p>{{ session.title }}</p>
-                    {% endif %}
-                    <p>{{ session.text|linebreaksbr }}</p>
+                    {{ session.title }}
+                    {% endif %} 
+                    {% if session.text != "" %}
+                    – {{ session.text|linebreaksbr }}
+                    {% endif %} 
                 </div>
                 <div class="session-info">
                 <div class="date">
@@ -63,4 +66,5 @@
         </a>
     {% endfor %}
 </div>
+{% endif %}
 {% endblock content %}
