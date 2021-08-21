@@ -114,6 +114,6 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'text', 'course', )
+    list_display = ('title', 'text', 'course' )
     prepopulated_fields = {"slug": ("title",)}
     autocomplete_fields = ['course']
