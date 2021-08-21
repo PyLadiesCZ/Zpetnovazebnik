@@ -2,32 +2,16 @@
 {% load md2 %}
 {% block content %}
 <header  class="course-name">
+    <h2>Hodnocení lekce</h2>
+    <div class="session-name pltext">
+        {{ session }}
+    </div>
     <a class="course pltext border-b" href="{% url 'session_list' course_slug=course.slug %}">
-        <p>{{ course }}</p>
+        <p>Zpět na seznam lekcí</p>
     </a>
 </header>
-<h2 class="current_session">Hodnocení lekce:</h2>
 <div class="session-detail">
-    <div class="session blg">
-        <div class="session-name">
-            {% if session.title %}
-                <p>{{ session.title }}</p>
-            {% endif %}
-            <p>{{ session.text|linebreaksbr }}</p>
-        </div>
-        <div class="session-info">
-        <div class="date">
-            {{ session.published_date }}
-        </div >
-        <div class="plpink">
-            {% if session.comments.count == 0 %}
-                <p>Lekci zatím nikdo nehodnotil.</p>
-            {% else %}
-                <p class="session-name">Hodnocení: {{ session.comments.count }}</p>
-            {% endif %}
-        </div >
-        </div>
-    </div>
+
     <div class="comment-info">
         <p>Odkaz pro přidání zpětné vazby dostaneš od organizátorky.</p>
     </div>
