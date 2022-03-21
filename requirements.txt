@@ -1,5 +1,5 @@
 -r requirements-local.txt
 gunicorn==19.9.0
 psycopg2==2.7.3.2
-waitress==1.4.3
+waitress==2.1.1
 django-heroku==0.3.1
