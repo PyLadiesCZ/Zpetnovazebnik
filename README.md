@@ -11,18 +11,18 @@ Kurz je na Zpětnovazebník možné přidat ručně přes /admin rozhraní, nebo
 
 Nainstalovanou aplikaci spustíš následovně:
 
-* (nepovinné) Aktivuj si virtuální prostředí, máš-li ho vytvořené.
+* Nainstaluj si [poetry](https://python-poetry.org/docs).
 * Nainstaluj závislosti:
   ```console
-  $ python -m pip install -r requirements-local.txt
+  $ poetry install
   ```
 * Proveď migraci:
   ```console
-  $ python manage.py migrate
+  $ poetry run python manage.py migrate
   ```
 * Spusť vývojový server:
   ```console
-  $ python manage.py runserver
+  $ poetry run python manage.py runserver
   ```
 * Program vypíše adresu (např. `http://127.0.0.1:8000/`); tu navštiv v prohlížeči.
 
@@ -32,7 +32,7 @@ Aplikace obsahuje několik testů, které se z nainstalovaného vývojového
 prostředí dají spustit pomocí:
 
 ```console
-$ python -m pytest
+$ poetry run python -m pytest
 ```
 
 ## Licence
