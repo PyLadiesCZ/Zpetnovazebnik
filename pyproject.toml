@@ -5,7 +5,7 @@ description = ""
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "~3.9"
+python = ">3.9,<4"
 Django = ">=4.1.1"
 whitenoise = ">=6.2.0"
 mistune = ">=2.0.4"
