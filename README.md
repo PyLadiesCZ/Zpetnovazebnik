@@ -35,6 +35,29 @@ prostředí dají spustit pomocí:
 $ poetry run python -m pytest
 ```
 
+## Nasazení
+
+Aplikace jede na [rosti.cz](https://rosti.cz/). Pro nasazení je potřeba:
+
+```bash
+cd app
+git pull
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py collectstatic --noinput 
+supervisorctl restart app
+```
+
+Při změně závislostí je třeba na vývojářově stroji pustit:
+
+```
+poetry update
+poetry export -f requirements.txt -o requirements.txt
+```
+
+Výsledek se dá do Gitu a v produkci se pustí `pip install -r requirements.txt`.
+
+
 ## Licence
 
 Kód je k dispozici pod licencí MIT, viz soubor [LICENSE.MIT].
