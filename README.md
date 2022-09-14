@@ -57,6 +57,19 @@ poetry export -f requirements.txt -o requirements.txt
 
 Výsledek se dá do Gitu a v produkci se pustí `pip install -r requirements.txt`.
 
+### První nasazení
+
+Na Roští bylo po vytvoření aplikace potřeba:
+
+- Smazat `/srv/app` a nahradit klonem repozitáře
+- V `/srv/conf/supervisor.d/python.conf` změnit jméno modulu s aplikací
+  (na konci přík. řádky pro gunicornn) na `feedback.wsgi`
+- V `/srv/conf/nginx.d/app.conf` přidat místo zakomentované ukázky:
+  ```
+        location /static/ {
+                alias /srv/app/staticfiles/;
+        }
+  ```
 
 ## Licence
 
