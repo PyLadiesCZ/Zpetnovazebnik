@@ -2,7 +2,7 @@
 name = "zpetnovazebnik"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["PyLadies CZ"]
 
 [tool.poetry.dependencies]
 python = ">3.9,<4"
