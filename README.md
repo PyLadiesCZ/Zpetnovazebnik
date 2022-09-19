@@ -11,18 +11,18 @@ Kurz je na Zpětnovazebník možné přidat ručně přes /admin rozhraní, nebo
 
 Nainstalovanou aplikaci spustíš následovně:
 
-* (nepovinné) Aktivuj si virtuální prostředí, máš-li ho vytvořené.
+* Nainstaluj si [poetry](https://python-poetry.org/docs).
 * Nainstaluj závislosti:
   ```console
-  $ python -m pip install -r requirements-local.txt
+  $ poetry install
   ```
 * Proveď migraci:
   ```console
-  $ python manage.py migrate
+  $ poetry run python manage.py migrate
   ```
 * Spusť vývojový server:
   ```console
-  $ python manage.py runserver
+  $ poetry run python manage.py runserver
   ```
 * Program vypíše adresu (např. `http://127.0.0.1:8000/`); tu navštiv v prohlížeči.
 
@@ -32,8 +32,44 @@ Aplikace obsahuje několik testů, které se z nainstalovaného vývojového
 prostředí dají spustit pomocí:
 
 ```console
-$ python -m pytest
+$ poetry run python -m pytest
 ```
+
+## Nasazení
+
+Aplikace jede na [rosti.cz](https://rosti.cz/). Pro nasazení je potřeba:
+
+```bash
+cd app
+git pull
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py collectstatic --noinput 
+supervisorctl restart app
+```
+
+Při změně závislostí je třeba na vývojářově stroji pustit:
+
+```
+poetry update
+poetry export -f requirements.txt -o requirements.txt
+```
+
+Výsledek se dá do Gitu a v produkci se pustí `pip install -r requirements.txt`.
+
+### První nasazení
+
+Na Roští bylo po vytvoření aplikace potřeba:
+
+- Smazat `/srv/app` a nahradit klonem repozitáře
+- V `/srv/conf/supervisor.d/python.conf` změnit jméno modulu s aplikací
+  (na konci přík. řádky pro gunicornn) na `feedback.wsgi`
+- V `/srv/conf/nginx.d/app.conf` přidat místo zakomentované ukázky:
+  ```
+        location /static/ {
+                alias /srv/app/staticfiles/;
+        }
+  ```
 
 ## Licence
 

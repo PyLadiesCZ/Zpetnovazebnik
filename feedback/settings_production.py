@@ -1,21 +1,14 @@
 import os
 import sys
 
-import django_heroku
-
 from feedback.settings import *
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DEBUG = False
 
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-
-
-# Set up the app for Heroku
-# see: https://devcenter.heroku.com/articles/django-app-configuration#settings-py-changes
-
-django_heroku.settings(locals())
+with open('secret_key') as f:
+    SECRET_KEY = f.read().strip()
 
 
 # Log to "sys.stdout" rather than the default stderr, so that Heroku logs pick

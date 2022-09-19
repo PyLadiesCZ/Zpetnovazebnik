@@ -2,7 +2,8 @@ from pathlib import Path
 import datetime
 
 import pytest
-from django.utils import timezone
+from django.utils.timezone import now
+from datetime import timezone
 from betamax import Betamax
 import requests
 
@@ -33,7 +34,7 @@ def test_course_basic_attributes(course):
 @pytest.mark.django_db
 def test_course_publish(course):
     course.publish()
-    assert course.published_date <= timezone.now()
+    assert course.published_date <= now()
 
 
 @pytest.mark.django_db
