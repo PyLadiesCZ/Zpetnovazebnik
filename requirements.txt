@@ -2,7 +2,7 @@ asgiref==3.5.2; python_version >= "3.8"
 certifi==2022.6.15.2; python_version >= "3.7" and python_version < "4"
 charset-normalizer==2.1.1; python_version >= "3.7" and python_version < "4" and python_full_version >= "3.6.0"
 django-markdown2==0.3.1
-django==4.1.1; python_version >= "3.8"
+django==4.1.6; python_version >= "3.8"
 idna==3.4; python_version >= "3.7" and python_version < "4"
 markdown2==2.4.3; python_version >= "3.5" and python_version < "4"
 mistune==2.0.4
