@@ -1,3 +1,26 @@
+:root {
+  --main_bg_color: white;
+  --text_color_primary: #333333;
+  --text_color_secondary: #555555;
+  --text_color_button: white;
+  --pyladies_pink: #e51f40;
+  --pyladies_red: #fa023c;
+  --textblock_border_color: #979797;
+  --textblock_bg_color: #f1f1f1;
+  --footer_bg_color: #333333;
+  --footer_text_color: #aeacad;
+  --footer_a_color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main_bg_color: black;
+    --text_color_primary: #cccccc;
+    --text_color_secondary: #aaaaaa;
+    --textblock_bg_color: #1c1c1c;
+  }
+}
+
 html { -webkit-box-sizing: border-box; box-sizing: border-box; }
 *, :after, :before { -webkit-box-sizing: inherit; box-sizing: inherit; }
 
@@ -11,7 +34,8 @@ body {
     width: 100%;
     height: 100%;
     font-size: 16px;
-    color: #333;
+    background-color: var(--main_bg_color);
+    color: var(--text_color_primary);
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
@@ -21,28 +45,28 @@ h2 {
     text-decoration:none;
 }
 .plpink {
-    color: #e51f40
+    color: var(--pyladies_pink);
 }
 .pltext {
-    color: #555555
+    color: var(--text_color_secondary);
 }
 a {
 	text-decoration: none;
-	color: #fa023c;
+	color: var(--pyladies_red);
 }
 a:hover {
 	text-decoration: none;
-	color: #e51f40;
+	color: var(--pyladies_pink);
 }
 .content header a, .content .course p:hover {
 	text-decoration: underline;
-    color: #555555;
+    color: var(--text_color_secondary);
 }
 .blg {
-    border-left: 6px solid #979797;
+    border-left: 6px solid var(--textblock_border_color);
 }
 .blp{
-    border-left: 6px solid #e51f40;
+    border-left: 6px solid var(--pyladies_pink);
 }
 
 /*  HEADER  */
@@ -55,14 +79,14 @@ nav>p{
     padding: 0 0.5em;
 }
 nav>a {
-    color: #333;
+    color: var(--text_color_primary);
     text-decoration: underline;
 
 }
 .page-header {
     position: relative;
     margin-bottom: 30px;
-    border-bottom: 1px solid #fa023c;
+    border-bottom: 1px solid var(--pyladies_red);
 }
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     font-size:9vw;
@@ -76,7 +100,7 @@ nav>a {
 }
 .header-text h2, .header-text p {
     margin: 0;
-    color: #333;
+    color: var(--text_color_primary);
 }
 .logo {
     width: 60vw;
@@ -97,7 +121,7 @@ nav>a {
 
 }
 .border-b-m {
-    border-bottom: 1px solid #979797;
+    border-bottom: 1px solid var(--textblock_border_color);
 }
 @media all and (min-width: 500px) {
     .logo {
@@ -153,15 +177,15 @@ nav>a {
     display: inherit;
 }
 .session {
-    background-color: #f1f1f1;
+    background-color: var(--textblock_bg_color);
     padding: 14px 14px;
     margin-bottom: 1em;
     display: block;
-    color: #555555;
+    color: var(--text_color_secondary);
     font-size: 1em;
 }
 .session-list>a>.session:hover {
-    border-left: 6px solid #fa023c;
+    border-left: 6px solid var(--pyladies_red);
 }
 .session h2, . h2 {
     margin: 5px 0 10px;
@@ -184,7 +208,7 @@ nav>a {
 }
 .session-list, .session-detail {
     width: 100%;
-    background-color: white;
+    background-color: var(--main_bg_color);
     overflow: auto;
 }
 .session-detail label {
@@ -192,7 +216,9 @@ nav>a {
 }
 .session-detail textarea {
     padding: 6px 10px 0;
-    border: 6px solid #e51f40;
+    border: 6px solid var(--pyladies_pink);
+    color: var(--text_color_primary);
+    background-color: var(--main_bg_color);
     width: 100%;
     display: block;
     font-size: 1em;
@@ -291,17 +317,17 @@ nav>a {
     display: block;
     width: 100%;
     margin-top: 2em;
-    background-color: #f1f1f1;
+    background-color: var(--textblock_bg_color);
 }
 .comment-info {
     font-weight: 600;
-    color: #f0213c;
+    color: var(--pyladies_red);
 }
 .comments-info {
     padding: 1em;
     display: block;
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: var(--textblock_bg_color);
 }
 .comment-header {
     display: -webkit-box;
@@ -317,8 +343,8 @@ nav>a {
 
 .btn, .save {
     width: 250px;
-    background-color: #fa023c;
-    color: white;
+    background-color: var(--pyladies_red);
+    color: var(--text_color_button);
     line-height: 2em;
     margin: 1em 0em;
     padding: 0.8em 0em;
@@ -332,8 +358,8 @@ nav>a {
     display: table;
 }
 .btn:hover, .btn-save>button:hover {
-    background-color: #e51f40;
-    color: white;
+    background-color: var(--pyladies_pink);
+    color: var(--text_color_button);
 }
 
 @media all and (min-width: 1000px) {
@@ -345,8 +371,8 @@ nav>a {
 
 /*  FOOTER  */
 .footer {
-    background: #333;
-    color: rgba(255, 255, 255, 0.2);
+    background: var(--footer_bg_color);
+    color: var(--footer_text_color);
     margin-top: -77px;
     margin-right: auto;
     margin-left: auto;
@@ -356,7 +382,7 @@ nav>a {
 }
 .footer .global-pyladies {
     margin: 26px;
-    color: #aeacad;
+    color: var(--footer_text_color);
     float: left;
 }
 .footer img {
@@ -376,7 +402,7 @@ nav>a {
     clear: both;
 }
 .footer a {
-    color: white;
+    color: var(--footer_a_color);
 }
 .global-pyladies {
     float: none;
